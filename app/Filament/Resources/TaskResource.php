@@ -60,6 +60,7 @@ class TaskResource extends Resource
                             case 'todo':
                                 return [
                                     'label' => 'To Do',
+                                    
                                 ];
                             case 'in_progress':
                                 return [
@@ -88,7 +89,14 @@ class TaskResource extends Resource
                         'in_progress' => 'In Progress',
                         'done' => 'Done',
                     ]),
+            ])
+
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
             ]);
+
     }
 
     // Relationships (if any)
@@ -98,6 +106,8 @@ class TaskResource extends Resource
             // Define any relations here if needed
         ];
     }
+
+    
 
     // Pages configuration for resource
     public static function getPages(): array
